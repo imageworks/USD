@@ -646,7 +646,7 @@ function(_pxr_install_rpath rpathRef NAME)
     set_target_properties(${NAME}
         PROPERTIES
             INSTALL_RPATH_USE_LINK_PATH TRUE
-            INSTALL_RPATH "${final}"
+            INSTALL_RPATH "${final};${ADDITIONAL_RPATH}"
     )
 endfunction()
 
