@@ -628,7 +628,7 @@ function(_pxr_install_rpath rpathRef NAME)
     set_target_properties(${NAME}
         PROPERTIES
             INSTALL_RPATH_USE_LINK_PATH TRUE
-            INSTALL_RPATH "${final}"
+            INSTALL_RPATH "${final};${ADDITIONAL_RPATH}"
     )
 endfunction()
 
@@ -1018,7 +1018,7 @@ function(_pxr_python_module NAME)
     )
 
     # Ensure the Python header directory is included as a system include
-    # directory. This is a workaround for an issue in which Python headers 
+    # directory. This is a workaround for an issue in which Python headers
     # unequivocally redefine macros defined in standard library headers.
     # This behavior prevents users from running strict builds with
     # PXR_STRICT_BUILD_MODE as the redefinition warnings would cause build
@@ -1240,7 +1240,7 @@ function(_pxr_library NAME)
         PROPERTIES
             FOLDER "${folder}"
             POSITION_INDEPENDENT_CODE ON
-            IMPORT_PREFIX "${args_PREFIX}"            
+            IMPORT_PREFIX "${args_PREFIX}"
             PREFIX "${args_PREFIX}"
             SUFFIX "${args_SUFFIX}"
             PUBLIC_HEADER "${args_PUBLIC_HEADERS}"
@@ -1310,7 +1310,7 @@ function(_pxr_library NAME)
                 COMMAND
                     ${CMAKE_COMMAND} -E make_directory ${docBuildDir}
                 COMMAND
-                    ${CMAKE_COMMAND} -E copy 
+                    ${CMAKE_COMMAND} -E copy
                     ${CMAKE_CURRENT_SOURCE_DIR}/${doxygenFile}
                     ${docBuildDir}/${doxygenFile}
                 MAIN_DEPENDENCY
@@ -1399,7 +1399,7 @@ function(_pxr_library NAME)
                 PUBLIC_HEADER DESTINATION ${headerInstallPrefix}
             )
         endif()
-        
+
         if(NOT isPlugin)
             export(TARGETS ${NAME}
                 APPEND
