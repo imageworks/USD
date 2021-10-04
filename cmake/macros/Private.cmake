@@ -1341,12 +1341,10 @@ function(_pxr_library NAME)
 
     # SPI addition - we want to be able to set the RPATH settings in the spk package file
     # to have more control over how we find the libraries.
-    if(${USE_PXR_RPATH_SETTINGS})
-        _pxr_init_rpath(rpath "${libInstallPrefix}")
-        _pxr_add_rpath(rpath "${CMAKE_INSTALL_PREFIX}/${PXR_INSTALL_SUBDIR}/lib")
-        _pxr_add_rpath(rpath "${CMAKE_INSTALL_PREFIX}/lib")
-        _pxr_install_rpath(rpath ${NAME})
-    endif()
+    _pxr_init_rpath(rpath "${libInstallPrefix}")
+    _pxr_add_rpath(rpath "${CMAKE_INSTALL_PREFIX}/${PXR_INSTALL_SUBDIR}/lib")
+    _pxr_add_rpath(rpath "${CMAKE_INSTALL_PREFIX}/lib")
+    _pxr_install_rpath(rpath ${NAME})
 
 
     #
